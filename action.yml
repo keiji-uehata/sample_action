@@ -1,0 +1,27 @@
+name: "QMK Firmware Compiler"
+description: "Compile QMK firmware from keyboard/keymap in the calling repository"
+author: "Your Name or Org"
+inputs:
+  keyboard:
+    description: "Keyboard directory name under keyboards/"
+    required: true
+  rev:
+    description: "Keyboard revision (used in qmk compile)"
+    required: true
+  keymap:
+    description: "Keymap name"
+    required: true
+  qmk_firmware_version:
+    description: "QMK firmware branch or tag to clone"
+    required: true
+runs:
+  using: "docker"
+  image: "Dockerfile"
+  args:
+    - ${{ inputs.keyboard }}
+    - ${{ inputs.rev }}
+    - ${{ inputs.keymap }}
+    - ${{ inputs.qmk_firmware_version }}
+branding:
+  icon: "cpu"
+  color: "blue"
